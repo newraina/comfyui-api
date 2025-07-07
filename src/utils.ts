@@ -447,12 +447,7 @@ export async function convertImageBuffer(
     image = image.jpeg(conversionOptions);
   }
 
-  const resultBuffer = await image.toBuffer();
-
-  // 为防止 resultBuffer 是一个 SharedArrayBuffer，
-  // 我们通过 Buffer.from() 创建一个标准的 Buffer 副本。
-  // 这确保了下游函数能正确处理它。
-  return Buffer.from(resultBuffer.buffer);
+  return image.toBuffer();
 }
 
 export async function sendSystemWebhook(
