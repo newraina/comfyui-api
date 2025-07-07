@@ -15,6 +15,7 @@ import {
   PutObjectCommand,
 } from "@aws-sdk/client-s3";
 import { NodeHttpHandler } from "@smithy/node-http-handler";
+import {Buffer} from "buffer"
 
 export let s3: S3Client | null = null;
 if (config.awsRegion) {
@@ -106,7 +107,7 @@ function createInputStream(fileOrPath: string | Buffer): ReadStream | Buffer {
   if (typeof fileOrPath === "string") {
     return fs.createReadStream(fileOrPath);
   } else {
-    return fileOrPath;
+    return Buffer.from(fileOrPath);
   }
 }
 
