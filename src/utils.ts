@@ -106,7 +106,7 @@ function createInputStream(fileOrPath: string | Buffer): ReadStream | Buffer {
   if (typeof fileOrPath === "string") {
     return fs.createReadStream(fileOrPath);
   } else {
-    return Buffer.from(fileOrPath);
+    return fileOrPath;
   }
 }
 
